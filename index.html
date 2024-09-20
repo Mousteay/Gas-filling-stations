@@ -25,14 +25,14 @@
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
 
-    // Load GeoJSON data
-    fetch('Gas_filling_stations.json') // Ensure this file is accessible
+    // Fetch and add GeoJSON data
+    fetch('Gas_filling_stations.json')
         .then(response => response.json())
         .then(data => {
             L.geoJSON(data, {
                 onEachFeature: function (feature, layer) {
-                    if (feature.properties && feature.properties.name) {
-                        layer.bindPopup(feature.properties.name); // Bind popup to each feature
+                    if (feature.properties && feature.properties.Name) {
+                        layer.bindPopup(feature.properties.Name); // Bind popup to each feature using the Name property
                     }
                 }
             }).addTo(map); // Adds the points from your GeoJSON file
