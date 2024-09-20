@@ -18,7 +18,7 @@
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 <script>
     // Initialize the map
-    var map = L.map('map').setView([0, 0], 2); // Default center is [0, 0] with zoom level 2
+    var map = L.map('map').setView([11.968667, 8.472083], 13); // Adjusted the center to one of your points
 
     // Add OpenStreetMap basemap
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -32,7 +32,9 @@
             L.geoJSON(data, {
                 onEachFeature: function (feature, layer) {
                     if (feature.properties && feature.properties.Name) {
-                        layer.bindPopup(feature.properties.Name); // Bind popup to each feature using the Name property
+                        layer.bindPopup(feature.properties.Name); // Bind popup with the Name property
+                    } else {
+                        console.log("No Name property found in this feature"); // Debugging
                     }
                 }
             }).addTo(map); // Adds the points from your GeoJSON file
